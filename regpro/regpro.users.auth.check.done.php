@@ -24,6 +24,12 @@ if($cfg['plugin']['regpro']['protime'] > 0)
 		{
 			cot_mail($urr['user_email'], $L['regpro_mail_subject'], sprintf($L['regpro_mail_body'], $urr['user_name']));
 			cot_log("Pro for register");
+			/* === Hook === */
+	                foreach (cot_getextplugins('regpro.done') as $pl)
+	                {
+		            include $pl;
+	                }
+	                /* ===== */
 		}
 	}
 }
